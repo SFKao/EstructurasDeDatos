@@ -1,4 +1,4 @@
-public class Pila {
+public class Pila implements Cloneable{
     Nodo inicio;
     int size;
 
@@ -7,12 +7,12 @@ public class Pila {
         size = 0;
     }
 
-    public void push(Object dato){
+    public void push(Entero dato){
         inicio = new Nodo(dato,inicio);
         size++;
     }
 
-    public Object pop() throws NoHayElementoEnLaPila{
+    public Entero pop() throws NoHayElementoEnLaPila{
         if(this.inicio == null)
             throw new NoHayElementoEnLaPila("No hay elementos pero has intentado hacer un pop!");
 
@@ -41,6 +41,20 @@ public class Pila {
     }
 
     @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Pila p = new Pila();
+        p.cloneNext(inicio,p);
+        return p;
+    }
+    
+    private void cloneNext(Nodo n, Pila s) throws CloneNotSupportedException{
+        if(n!=null) {
+            cloneNext(n.next,s);
+            s.push((Entero) n.v.clone());
+        }
+    }
+
+    @Override
     public String toString() {
         String aux = "Pila{{" +
                 "size=" + size +"}";
@@ -53,24 +67,24 @@ public class Pila {
     }
 }
 
-class Nodo{
-    Object v;
+class Nodo implements Cloneable{
+    Entero v;
     Nodo next = null;
 
-    public Nodo(Object v, Nodo next) {
+    public Nodo(Entero v, Nodo next) {
         this.v = v;
         this.next = next;
     }
 
-    public Nodo(Object v) {
+    public Nodo(Entero v) {
         this.v = v;
     }
 
-    public Object getV() {
+    public Entero getV() {
         return v;
     }
 
-    public void setV(Object v) {
+    public void setV(Entero v) {
         this.v = v;
     }
 
@@ -81,6 +95,8 @@ class Nodo{
     public void setNext(Nodo next) {
         this.next = next;
     }
+
+
 }
 
 class NoHayElementoEnLaPila extends Exception{
