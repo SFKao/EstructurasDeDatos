@@ -76,5 +76,14 @@ public class PilaEnlace implements Pila{
         return aux + "}";
     }
 
+    public Entero get(int i) throws PilaException {
+        if(i >= size)
+            throw new PilaException("Se intenta buscar un elemento en una posicion superior al tamaño");
+        Nodo aux = inicio;
+        while(i > 0){
+            aux = aux.getNext();
+        }
+        return aux.getV();
+    }
 
 }
