@@ -1,23 +1,23 @@
-public class Pila implements Cloneable{
-    Nodo inicio;
+public class PilaPrueba implements Cloneable{
+    NodoPrueba inicio;
     int size;
 
-    public Pila() {
+    public PilaPrueba() {
         inicio = null;
         size = 0;
     }
 
-    public void push(Entero dato){
-        inicio = new Nodo(dato,inicio);
+    public void push(EnteroPrueba dato){
+        inicio = new NodoPrueba(dato,inicio);
         size++;
     }
 
-    public Entero pop() throws NoHayElementoEnLaPila{
+    public EnteroPrueba pop() throws NoHayElementoEnLaPila{
         if(this.inicio == null)
             throw new NoHayElementoEnLaPila("No hay elementos pero has intentado hacer un pop!");
 
         size--;
-        Nodo r = inicio;
+        NodoPrueba r = inicio;
         inicio = inicio.next;
         return r.v;
     }
@@ -31,7 +31,7 @@ public class Pila implements Cloneable{
     }
 
     public Object buscar(Object c){
-        Nodo n = inicio;
+        NodoPrueba n = inicio;
         while(n!=null){
             if(n.equals(c))
                 return n;
@@ -42,15 +42,15 @@ public class Pila implements Cloneable{
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        Pila p = new Pila();
+        PilaPrueba p = new PilaPrueba();
         p.cloneNext(inicio,p);
         return p;
     }
     
-    private void cloneNext(Nodo n, Pila s) throws CloneNotSupportedException{
+    private void cloneNext(NodoPrueba n, PilaPrueba s) throws CloneNotSupportedException{
         if(n!=null) {
             cloneNext(n.next,s);
-            s.push((Entero) n.v.clone());
+            s.push((EnteroPrueba) n.v.clone());
         }
     }
 
@@ -58,7 +58,7 @@ public class Pila implements Cloneable{
     public String toString() {
         String aux = "Pila{{" +
                 "size=" + size +"}";
-        Nodo n = inicio;
+        NodoPrueba n = inicio;
         while(n!=null){
             aux = aux + ", " + n.v.toString();
             n = n.next;
@@ -67,32 +67,32 @@ public class Pila implements Cloneable{
     }
 }
 
-class Nodo implements Cloneable{
-    Entero v;
-    Nodo next = null;
+class NodoPrueba implements Cloneable{
+    EnteroPrueba v;
+    NodoPrueba next = null;
 
-    public Nodo(Entero v, Nodo next) {
+    public NodoPrueba(EnteroPrueba v, NodoPrueba next) {
         this.v = v;
         this.next = next;
     }
 
-    public Nodo(Entero v) {
+    public NodoPrueba(EnteroPrueba v) {
         this.v = v;
     }
 
-    public Entero getV() {
+    public EnteroPrueba getV() {
         return v;
     }
 
-    public void setV(Entero v) {
+    public void setV(EnteroPrueba v) {
         this.v = v;
     }
 
-    public Nodo getNext() {
+    public NodoPrueba getNext() {
         return next;
     }
 
-    public void setNext(Nodo next) {
+    public void setNext(NodoPrueba next) {
         this.next = next;
     }
 
