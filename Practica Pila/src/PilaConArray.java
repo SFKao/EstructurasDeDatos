@@ -23,7 +23,9 @@ public class PilaConArray implements Pila {
     public Object pop() throws Exception {
         if(size <= 0)
             throw new PilaException("Se ha intentado hacer pop en una pila sin elementos!");
-        return arr[--size];
+        Entero a = arr[--size];
+        arr[size] = null;
+        return a;
     }
     @Override
     public void push(Entero e) throws Exception {
