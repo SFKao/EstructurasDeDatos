@@ -8,12 +8,6 @@ public class PilaEnlace implements Pila{
     }
 
     @Override
-    public void push(Entero dato){
-        inicio = new Nodo(dato,inicio);
-        size++;
-    }
-
-    @Override
     public Object clone() throws CloneNotSupportedException {
         PilaEnlace p = new PilaEnlace();
         try {
@@ -29,6 +23,24 @@ public class PilaEnlace implements Pila{
             cloneNext(n.getNext(),s);
             s.push(n.getV());
         }
+    }
+
+    @Override
+    public void push(Entero dato){
+        try {
+            inicio = new Nodo((Entero) dato.clone(),inicio);
+        } catch (CloneNotSupportedException e) {return;}
+        size++;
+    }
+
+    @Override
+    public Entero pop() throws PilaException{
+        if(this.inicio == null)
+            throw new PilaException("No hay elementos pero has intentado hacer un pop!");
+        size--;
+        Nodo r = inicio;
+        inicio = inicio.getNext();
+        return r.getV();
     }
 
     public int getSize() {
@@ -64,13 +76,5 @@ public class PilaEnlace implements Pila{
         return aux + "}";
     }
 
-    @Override
-    public Entero pop() throws PilaException{
-        if(this.inicio == null)
-            throw new PilaException("No hay elementos pero has intentado hacer un pop!");
-        size--;
-        Nodo r = inicio;
-        inicio = inicio.getNext();
-        return r.getV();
-    }
+
 }
