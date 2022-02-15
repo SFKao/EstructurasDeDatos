@@ -82,6 +82,7 @@ public class PilaEnlace implements Pila{
         Nodo aux = inicio;
         while(i > 0){
             aux = aux.getNext();
+            i--;
         }
         return aux.getV();
     }
