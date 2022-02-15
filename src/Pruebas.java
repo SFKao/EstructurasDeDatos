@@ -1,11 +1,11 @@
 public class Pruebas {
 
     public static void main(String[] args) {
-        Pila p = new Pila();
+        PilaPrueba p = new PilaPrueba();
 
-        p.push(new Entero(2));
-        p.push(new Entero(3));
-        p.push(new Entero(4));
+        p.push(new EnteroPrueba(2));
+        p.push(new EnteroPrueba(3));
+        p.push(new EnteroPrueba(4));
         System.out.println(p);
         try {
             System.out.println(p.clone());

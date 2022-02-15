@@ -1,5 +1,5 @@
 public class Entero implements Cloneable{
-    int valor;
+    private int valor;
 
     public Entero(int valor) {
         this.valor = valor;
@@ -23,5 +23,11 @@ public class Entero implements Cloneable{
         return String.valueOf(valor);
     }
 
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Entero entero = (Entero) o;
+        return valor == entero.valor;
+    }
 }
