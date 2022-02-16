@@ -49,7 +49,5 @@ public class PilaConArray implements Pila {
     public boolean hasNext(){ //para iterar
         return size>0;
     }
-    
-    
-    
+
 }
