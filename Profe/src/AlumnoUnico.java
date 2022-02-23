@@ -58,7 +58,7 @@ public class AlumnoUnico {
 
     @Override
     public int hashCode() {
-        return this.nombre.length() * nombre.charAt(0) * (nombre.charAt(1)*nombre.charAt(1));
+        return this.nombre.length() * nombre.hashCode() + (nombre.charAt(1)*nombre.charAt(0));
     }
 
     @Override

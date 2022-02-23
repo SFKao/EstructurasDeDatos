@@ -1,11 +1,8 @@
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class PruebaHashSet {
     public static void main(String[] args) throws CloneNotSupportedException {
-        pruebaHashSetAlumnosUnicos();
+        pruebaHashMapAlumnos();
     }
 
 
@@ -84,6 +81,45 @@ public class PruebaHashSet {
         a.add((AlumnoUnico) a1.clone()); //deja
 
         System.out.println(a);
+        System.out.println("ITERATOR TIME");
+        Iterator<AlumnoUnico> it = a.iterator();
+        while(it.hasNext()){
+            System.out.println(it.next());
+        }
+    }
+
+    public static void pruebaHashMapAlumnos(){
+        Alumno a1 = new Alumno("A");
+        Alumno a2 = new Alumno("B");
+        Alumno a3 = new Alumno("C");
+        Alumno a4 = new Alumno("D");
+
+        Map<Alumno, Alumno> personas = new HashMap<Alumno, Alumno>();
+        personas.put(a1,a1);
+        personas.put(a2,a2);
+        personas.put(a3,a3);
+        personas.put(a4,a4);
+
+        System.out.println(personas.size());
+
+        Iterator i = personas.values().iterator();
+        while (i.hasNext()){
+            System.out.println(i.next());
+        }
+        espacio();
+        for (Alumno key:personas.keySet()) {
+            System.out.println(personas.get(key));
+        }
+
+        i = personas.entrySet().iterator();
+        while (i.hasNext()){
+            Map.Entry e = (Map.Entry) i.next();
+            System.out.println(e.getKey() + " " + e.getValue());
+        }
+
+        for (Map.Entry er : personas.entrySet()){
+            System.out.println(er);
+        }
     }
 
     public static void espacio(){
